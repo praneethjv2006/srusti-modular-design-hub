@@ -136,7 +136,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-green-600/5 transition-all duration-500 animate-pulse"></div>
         <div className="max-w-7xl mx-auto text-center relative">
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight animate-fade-in transform transition-all duration-700 hover:scale-105">
-            Srusti Modular
+            SRUSTI MODULAR
             <span className="block text-3xl md:text-4xl text-primary font-medium mt-2 animate-fade-in transform transition-all duration-700 hover:scale-105" style={{animationDelay: '0.2s'}}>
               Private Limited
             </span>
