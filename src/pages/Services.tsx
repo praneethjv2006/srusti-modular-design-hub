@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ChevronDown, Filter, Grid, List, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const Services = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
@@ -135,19 +136,19 @@ const Services = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       {/* Navigation */}
-      <nav className="bg-white/95 backdrop-blur-sm shadow-lg sticky top-0 z-50 border-b border-slate-200">
+      <nav className="bg-background/95 backdrop-blur-sm shadow-lg sticky top-0 z-50 border-b border-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+              <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent transition-all duration-300 hover:scale-105">
                 Srusti Modular
               </Link>
             </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <Link to="/" className="text-slate-700 hover:text-amber-600 transition-colors duration-200 font-medium">
+              <Link to="/" className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium">
                 Home
               </Link>
               
@@ -155,23 +156,23 @@ const Services = () => {
                 <button
                   onMouseEnter={() => setIsServicesOpen(true)}
                   onMouseLeave={() => setIsServicesOpen(false)}
-                  className="flex items-center text-amber-600 font-medium"
+                  className="flex items-center text-primary font-medium"
                 >
                   Services
-                  <ChevronDown className="ml-1 h-4 w-4" />
+                  <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200" />
                 </button>
                 
                 {isServicesOpen && (
                   <div
                     onMouseEnter={() => setIsServicesOpen(true)}
                     onMouseLeave={() => setIsServicesOpen(false)}
-                    className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-slate-200 py-2 z-50"
+                    className="absolute top-full left-0 mt-1 w-56 bg-background rounded-lg shadow-xl border border-border py-2 z-50 animate-fade-in"
                   >
                     {services.map((service, index) => (
                       <button
                         key={index}
                         onClick={() => setSelectedCategory(service)}
-                        className="block w-full text-left px-4 py-2 text-slate-700 hover:bg-amber-50 hover:text-amber-600 transition-colors duration-200"
+                        className="block w-full text-left px-4 py-2 text-foreground/80 hover:bg-primary/10 hover:text-primary transition-colors duration-200"
                       >
                         {service}
                       </button>
@@ -180,36 +181,38 @@ const Services = () => {
                 )}
               </div>
               
-              <Link to="/about" className="text-slate-700 hover:text-amber-600 transition-colors duration-200 font-medium">
+              <Link to="/about" className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium">
                 About Us
               </Link>
-              <Link to="/contact" className="text-slate-700 hover:text-amber-600 transition-colors duration-200 font-medium">
+              <Link to="/contact" className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium">
                 Contact Us
               </Link>
+              
+              <ThemeToggle />
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-amber-600 to-orange-600 text-white">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary to-green-600 text-white">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Our Services</h1>
-          <p className="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">Our Services</h1>
+          <p className="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>
             Explore our comprehensive range of modular furniture solutions
           </p>
         </div>
       </section>
 
       {/* Filters and Controls */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-200">
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-card border-b border-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between animate-fade-in">
             <div className="flex flex-wrap gap-2">
               <Button
                 variant={selectedCategory === 'All' ? 'default' : 'outline'}
                 onClick={() => setSelectedCategory('All')}
-                className={selectedCategory === 'All' ? 'bg-amber-600 hover:bg-amber-700' : ''}
+                className={`transition-all duration-200 hover:scale-105 ${selectedCategory === 'All' ? 'bg-primary hover:bg-primary/90' : 'hover:bg-primary/10 hover:text-primary'}`}
               >
                 All
               </Button>
@@ -218,7 +221,7 @@ const Services = () => {
                   key={service}
                   variant={selectedCategory === service ? 'default' : 'outline'}
                   onClick={() => setSelectedCategory(service)}
-                  className={selectedCategory === service ? 'bg-amber-600 hover:bg-amber-700' : ''}
+                  className={`transition-all duration-200 hover:scale-105 ${selectedCategory === service ? 'bg-primary hover:bg-primary/90' : 'hover:bg-primary/10 hover:text-primary'}`}
                 >
                   {service}
                 </Button>
@@ -227,12 +230,12 @@ const Services = () => {
             
             <div className="flex items-center gap-4">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   placeholder="Search projects..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 w-64"
+                  className="pl-10 w-64 transition-all duration-200 focus:ring-2 focus:ring-primary/20"
                 />
               </div>
               
@@ -241,7 +244,7 @@ const Services = () => {
                   variant={viewMode === 'grid' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('grid')}
-                  className={viewMode === 'grid' ? 'bg-amber-600 hover:bg-amber-700' : ''}
+                  className={`transition-all duration-200 ${viewMode === 'grid' ? 'bg-primary hover:bg-primary/90' : 'hover:bg-primary/10'}`}
                 >
                   <Grid className="h-4 w-4" />
                 </Button>
@@ -249,7 +252,7 @@ const Services = () => {
                   variant={viewMode === 'list' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('list')}
-                  className={viewMode === 'list' ? 'bg-amber-600 hover:bg-amber-700' : ''}
+                  className={`transition-all duration-200 ${viewMode === 'list' ? 'bg-primary hover:bg-primary/90' : 'hover:bg-primary/10'}`}
                 >
                   <List className="h-4 w-4" />
                 </Button>
@@ -260,13 +263,13 @@ const Services = () => {
       </section>
 
       {/* Services Gallery */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-background transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-slate-800 mb-2">
+          <div className="mb-8 animate-fade-in">
+            <h2 className="text-2xl font-bold text-foreground mb-2">
               {selectedCategory === 'All' ? 'All Projects' : selectedCategory}
             </h2>
-            <p className="text-slate-600">
+            <p className="text-muted-foreground">
               {filteredImages.length} projects found
             </p>
           </div>
@@ -274,7 +277,11 @@ const Services = () => {
           {viewMode === 'grid' ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredImages.map((item, index) => (
-                <div key={index} className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-white">
+                <div 
+                  key={index} 
+                  className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-card hover:scale-105 animate-fade-in"
+                  style={{animationDelay: `${index * 0.1}s`}}
+                >
                   <div className="aspect-square overflow-hidden">
                     <img
                       src={item.image}
@@ -283,9 +290,9 @@ const Services = () => {
                     />
                   </div>
                   <div className="p-4">
-                    <h3 className="text-lg font-semibold text-slate-800 mb-1">{item.title}</h3>
-                    <p className="text-sm text-amber-600 font-medium mb-2">{item.category}</p>
-                    <p className="text-sm text-slate-600">{item.description}</p>
+                    <h3 className="text-lg font-semibold text-card-foreground mb-1">{item.title}</h3>
+                    <p className="text-sm text-primary font-medium mb-2">{item.category}</p>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -293,18 +300,22 @@ const Services = () => {
           ) : (
             <div className="space-y-4">
               {filteredImages.map((item, index) => (
-                <div key={index} className="flex bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                <div 
+                  key={index} 
+                  className="flex bg-card rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden hover:scale-105 animate-fade-in"
+                  style={{animationDelay: `${index * 0.05}s`}}
+                >
                   <div className="w-48 h-32 flex-shrink-0">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                     />
                   </div>
                   <div className="p-6 flex-1">
-                    <h3 className="text-xl font-semibold text-slate-800 mb-2">{item.title}</h3>
-                    <p className="text-amber-600 font-medium mb-2">{item.category}</p>
-                    <p className="text-slate-600">{item.description}</p>
+                    <h3 className="text-xl font-semibold text-card-foreground mb-2">{item.title}</h3>
+                    <p className="text-primary font-medium mb-2">{item.category}</p>
+                    <p className="text-muted-foreground">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -312,10 +323,10 @@ const Services = () => {
           )}
 
           {filteredImages.length === 0 && (
-            <div className="text-center py-12">
-              <Filter className="h-12 w-12 text-slate-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-slate-800 mb-2">No projects found</h3>
-              <p className="text-slate-600">Try adjusting your search or filter criteria</p>
+            <div className="text-center py-12 animate-fade-in">
+              <Filter className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-foreground mb-2">No projects found</h3>
+              <p className="text-muted-foreground">Try adjusting your search or filter criteria</p>
             </div>
           )}
         </div>
