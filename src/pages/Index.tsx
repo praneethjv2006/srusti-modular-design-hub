@@ -75,7 +75,7 @@ const Index = () => {
             <div className="flex items-center">
               <Link to="/" className="flex items-center space-x-2 text-2xl font-bold bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent transition-all duration-500 hover:scale-110 transform">
                 <Building2 className="h-8 w-8 text-primary animate-pulse" />
-                <span className="transition-all duration-300 hover:tracking-wide">Srusti Modular</span>
+                <span className="transition-all duration-300 hover:tracking-wide">SRUSTI MODULAR</span>
               </Link>
             </div>
             
